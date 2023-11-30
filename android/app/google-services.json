@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "125103569318",
+    "project_id": "ai-diet-consultant-child",
+    "storage_bucket": "ai-diet-consultant-child.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125103569318:android:97f6239b9036fff900f767",
+        "android_client_info": {
+          "package_name": "com.example.ai_health_care"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_tl0HMuRuCxQmpt7xEiCKhOepKC29Ya0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
