@@ -19,7 +19,7 @@ class _EnterDoctorDetailsState extends State<EnterDoctorDetails> {
   bool isLoding=false;
  String? genderValue;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  List genderlistItem=["Male","Female","Custom"];
+  List genderlistItem=["Male","Female","Transgender"];
  var specilityValue;
  List specilitylistItem=["Paediatrician"];
  var experienceValue;
@@ -47,7 +47,8 @@ class _EnterDoctorDetailsState extends State<EnterDoctorDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ENTER DOCTOR DETAIL",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white)),
+        backgroundColor: Color(0xFF7165D6),
+        title: Text("ENTER DOCTOR DETAILS",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white)),
         centerTitle: true,
       ),
       body: Center(
@@ -61,47 +62,53 @@ class _EnterDoctorDetailsState extends State<EnterDoctorDetails> {
               TextField(
                 controller: nameController,
                 keyboardType: TextInputType.text,
+                style: TextStyle(color: Color(0xFF7165D6)),
+                cursorColor:Color(0xFF7165D6) ,
                 decoration: InputDecoration(
                     labelText: "Enter Full Name",
-                    focusColor: Colors.blue,
-                    fillColor: Colors.blue,
-                    prefixIcon: Icon(Icons.person_add_alt_1_outlined,color: Colors.lightBlue.shade500),
+                    labelStyle: TextStyle(color: Color(0xFF7165D6)),
+                    focusColor:Color(0xFF7165D6),
+                    fillColor: Color(0xFF7165D6),
+                    prefixIcon: Icon(Icons.person_add_alt_1_outlined,color: Color(0xFF7165D6)),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(21),
                         borderSide:
-                        BorderSide(color: Colors.lightBlue.shade300, width: 2)),
+                        BorderSide(color: Color(0xFF7165D6), width: 2)),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(21),
-                        borderSide: BorderSide(width: 2, color: Colors.lightBlue.shade100))),
+                        borderSide: BorderSide(width: 2,color: Color(0xFF7165D6)))),
               ),
               TextField(
                 controller: regNumberController,
                 keyboardType: TextInputType.number,
+                style: TextStyle(color: Color(0xFF7165D6)),
+                cursorColor:Color(0xFF7165D6) ,
                 decoration: InputDecoration(
                     labelText: "Enter Registration Number (LN)",
-                    prefixIcon: Icon(Icons.confirmation_num,color: Colors.lightBlue.shade500),
+                    labelStyle:TextStyle(color: Color(0xFF7165D6)) ,
+                    prefixIcon: Icon(Icons.confirmation_num,color: Color(0xFF7165D6)),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(21),
                         borderSide:
-                        BorderSide(color: Colors.lightBlue.shade300, width: 2)),
+                        BorderSide(color: Color(0xFF7165D6), width: 2)),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(21),
-                        borderSide: BorderSide(width: 2, color: Colors.lightBlue.shade100))),
+                        borderSide: BorderSide(width: 2, color: Color(0xFF7165D6)))),
               ),
               Container(
                 padding: EdgeInsets.only(left: 9),
                 decoration:BoxDecoration(
                     borderRadius: BorderRadius.circular(21),
-                  border: Border.all(width: 2,color:Colors.lightBlue.shade100)
+                  border: Border.all(width: 2,color:Color(0xFF7165D6))
                 ) ,
                 child: DropdownButton(
                   dropdownColor: Colors.white,
                   iconSize: 36,
-                  style: TextStyle(color: Colors.blue,fontSize: 16),
+                  style: TextStyle(color:Color(0xFF7165D6),fontSize: 16),
                   underline: SizedBox(),
-                  iconEnabledColor: Colors.blue,
+                  iconEnabledColor: Color(0xFF7165D6),
                   isExpanded: true,
-                  hint: Text("Select Gender"),
+                  hint: Text("Select Gender",style: TextStyle(color: Color(0xFF7165D6)),),
                   value:genderValue,
                   onChanged: (newValue){
                     setState(() {
@@ -120,16 +127,16 @@ class _EnterDoctorDetailsState extends State<EnterDoctorDetails> {
                 padding: EdgeInsets.only(left: 9),
                 decoration:BoxDecoration(
                     borderRadius: BorderRadius.circular(21),
-                    border: Border.all(width: 2,color:Colors.lightBlue.shade100)
+                    border: Border.all(width: 2,color:Color(0xFF7165D6))
                 ) ,
                 child: DropdownButton(
                   dropdownColor: Colors.white,
                   iconSize: 36,
-                  style: TextStyle(color: Colors.blue,fontSize: 16),
+                  style: TextStyle(color:Color(0xFF7165D6),fontSize: 16),
                   underline: SizedBox(),
-                  iconEnabledColor: Colors.blue,
+                  iconEnabledColor: Color(0xFF7165D6),
                   isExpanded: true,
-                  hint: Text("Select Speciality"),
+                  hint: Text("Select Speciality",style: TextStyle(color: Color(0xFF7165D6)),),
                   value:specilityValue,
                   onChanged: (newValue){
                     setState(() {
@@ -148,16 +155,16 @@ class _EnterDoctorDetailsState extends State<EnterDoctorDetails> {
                 padding: EdgeInsets.only(left: 9),
                 decoration:BoxDecoration(
                     borderRadius: BorderRadius.circular(21),
-                    border: Border.all(width: 2,color:Colors.lightBlue.shade100)
+                    border: Border.all(width: 2,color:Color(0xFF7165D6))
                 ) ,
                 child: DropdownButton(
                   dropdownColor: Colors.white,
                   iconSize: 36,
-                  style: TextStyle(color: Colors.blue,fontSize: 16),
+                  style: TextStyle(color: Color(0xFF7165D6),fontSize: 16),
                   underline: SizedBox(),
-                  iconEnabledColor: Colors.blue,
+                  iconEnabledColor: Color(0xFF7165D6),
                   isExpanded: true,
-                  hint: Text("Enter Experience if have any!"),
+                  hint: Text("Enter Experience if have any!",style: TextStyle(color: Color(0xFF7165D6)),),
                   value:experienceValue,
                   onChanged: (newValue){
                     setState(() {
@@ -184,7 +191,7 @@ class _EnterDoctorDetailsState extends State<EnterDoctorDetails> {
                       height: 50,
                       width: MediaQuery.of(context).size.width/1.2,
                       decoration:BoxDecoration(
-                        color: Colors.lightBlue.shade500,
+                        color: Color(0xFF7165D6),
                         borderRadius: BorderRadius.all(Radius.circular(40),
                         ),),
                       child: Center(
@@ -205,7 +212,7 @@ class _EnterDoctorDetailsState extends State<EnterDoctorDetails> {
 
   void onSubmit() {
     if(genderValue==null || specilityValue==null || experienceValue==null || nameController.text.isEmpty || regNumberController.text.isEmpty){
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("All field must be fill"), backgroundColor: Colors.red,));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("All field must be fill",style: TextStyle(color: Colors.white),), backgroundColor: Color(0xFF7165D6),));
     }else{
       setState(() {
         isLoding=true;

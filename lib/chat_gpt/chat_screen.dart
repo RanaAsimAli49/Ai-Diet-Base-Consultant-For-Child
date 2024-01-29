@@ -11,10 +11,14 @@ class ChatGPTScreen extends StatefulWidget {
 
 class _ChatGPTScreenState extends State<ChatGPTScreen> {
   final List<Message> _messages = [];
+  bool isLoading = false;
 
   final TextEditingController _textEditingController = TextEditingController();
 
   void onSendMessage() async {
+    setState(() {
+      isLoading=true;
+    });
     Message message = Message(text: _textEditingController.text, isMe: true);
 
     _textEditingController.clear();
@@ -25,6 +29,9 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
 
     String response = await sendMessageToChatGpt(message.text);
 
+    setState(() {
+      isLoading=false;
+    });
     Message chatGpt = Message(text: response, isMe: false);
 
     setState(() {
@@ -63,7 +70,7 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
 
   Widget _buildMessage(Message message) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: Column(
@@ -72,9 +79,17 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
           children: <Widget>[
             Text(
               message.isMe ? 'You' : 'GPT',
-              style: TextStyle(color: Colors.red),
+              style: message.isMe ? TextStyle(color:Color(0xFF7165D6),fontSize: 16,fontWeight: FontWeight.bold,):TextStyle(color: Colors.black54,fontSize: 16,fontWeight: FontWeight.bold),
             ),
-            Text(message.text,style: TextStyle(color: Colors.blue),),
+            SingleChildScrollView(
+              child: Container(
+                  decoration: BoxDecoration(
+                    color:Color(0xFF7165D6),
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                  padding: const EdgeInsets.all(10),
+                  child: Text(message.text,textAlign: TextAlign.justify,style: const TextStyle(color: Colors.white,height: 1.5),)),
+            ),
           ],
         ),
       ),
@@ -85,7 +100,8 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ChatGPT'),
+        title: const Text('ChatGPT'),
+        backgroundColor: Color(0xFF7165D6),
       ),
       body: Column(
         children: <Widget>[
@@ -98,27 +114,50 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
               },
             ),
           ),
-          Divider(height: 1.0),
-          Container(
-            decoration: BoxDecoration(color: Theme.of(context).cardColor),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextField(
-                    controller: _textEditingController,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(10.0),
-                      hintText: 'Type a message...',
-                      border: InputBorder.none,
+          //const Divider(height: 1.0),
+          Column(
+            children: [
+              if(isLoading)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(width: 10,),
+                    SizedBox(
+                      height: 50,
+                      width: 70,
+                      child: Image.asset(
+                          "assets/gpttyping.gif",
+                          height: 125.0,
+                          width: 125.0,
+                          ),
+                    )
+                  ],
+                ),
+              Container(
+                decoration: BoxDecoration(color: Theme.of(context).cardColor),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: TextField(
+                        controller: _textEditingController,
+                        cursorColor:Color(0xFF7165D6),
+                        style: TextStyle(color: Color(0xFF7165D6)),
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.all(20.0),
+                          hintText: 'Type a message...',
+                          hintStyle:TextStyle(color: Color(0xFF7165D6)),
+                          border: InputBorder.none,
+                        ),
+                      ),
                     ),
-                  ),
+                    IconButton(
+                      icon: const Icon(Icons.send,color: Color(0xFF7165D6),size: 30,),
+                      onPressed: onSendMessage,
+                    ),
+                  ],
                 ),
-                IconButton(
-                  icon: Icon(Icons.send),
-                  onPressed: onSendMessage,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

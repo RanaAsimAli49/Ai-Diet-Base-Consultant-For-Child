@@ -25,7 +25,7 @@ class _Register_Doc_and_ChildState extends State<Register_Doc_and_Child> {
         height: MediaQuery.of(context).size.height/0,
         width: MediaQuery.of(context).size.width/1,
         decoration: BoxDecoration(
-            color: Colors.blue.shade300,
+            color: Color(0xFF7165D6),
         ),
         // color: Colors.deepOrangeAccent,
         child: Padding(
@@ -48,7 +48,7 @@ class _Register_Doc_and_ChildState extends State<Register_Doc_and_Child> {
                     SizedBox(
                       height: 20,
                     ),
-                Text("REGISTER DOCTOR",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white)),
+                Text("REGISTER DOCTOR",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white,fontStyle: FontStyle.italic)),
           ],
                 ),
               ),
@@ -66,7 +66,7 @@ class _Register_Doc_and_ChildState extends State<Register_Doc_and_Child> {
                 SizedBox(
                   height: 20,
                 ),
-                Text("REGISTER CHILD",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white)),
+                Text("REGISTER CHILD",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20, color: Colors.white,fontStyle: FontStyle.italic)),
                   ],
                 ),
               ),

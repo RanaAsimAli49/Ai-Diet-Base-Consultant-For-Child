@@ -20,6 +20,7 @@ class SearchDoctor extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Search Doctors'),
+        backgroundColor: Color(0xFF7165D6),
         centerTitle: true,
       ),
       body: Center(
@@ -144,9 +145,10 @@ class _DoctorCardState extends State<DoctorCard> {
       margin: const EdgeInsets.all(8.0),
       child: ListTile(
         leading: CircleAvatar(
-          child: Text(data['name']?[0] ?? ''), // Add null check
+          backgroundColor:Color(0xFF7165D6) ,
+          child: Text(data['name']?[0] ?? '',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),), // Add null check
         ),
-        title: Text(data['name'] ?? ''),
+        title: Text(data['name'] ?? '',style: TextStyle(fontWeight: FontWeight.bold),),
         subtitle: Text(data['specialization'] ?? ''),
         trailing: ElevatedButton(
             onPressed: () {
@@ -154,7 +156,11 @@ class _DoctorCardState extends State<DoctorCard> {
               bookCheck(b);
               print('Book button pressed for UID: $uid');
             },
-            child: b?const Text('Cancel'):const Text('Book'),
+          style: ElevatedButton.styleFrom(
+            primary:Color(0xFF7165D6), // Background color
+            onPrimary: Colors.white, // Text Color (Foreground color)
+          ),
+            child: b?const Text('Cancel'):const Text('Book',style: TextStyle(color: Colors.white),),
       ),
     ));
   }

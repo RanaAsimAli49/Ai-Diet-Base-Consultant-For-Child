@@ -1,3 +1,5 @@
+import 'package:ai_health_care/doctor_chat/chats_view.dart';
+import 'package:ai_health_care/screens/welcome_screen.dart';
 import 'package:ai_health_care/splash_screen/splash_screen.dart';
 import 'package:ai_health_care/views/login_view/login_view.dart';
 import 'package:ai_health_care/views/sign_up_view/sign_up_view.dart';
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
     debugShowCheckedModeBanner: false,
     title: 'Material App',
     home: SplashScreen()
+    // home: WelcomeScreen(),
     );
   }
 

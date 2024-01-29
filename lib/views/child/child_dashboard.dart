@@ -1,3 +1,4 @@
+import 'package:ai_health_care/screens/settings_screen.dart';
 import 'package:ai_health_care/views/all_child_dashboard_activity/ai_diet_plane_suggest.dart';
 import 'package:ai_health_care/views/child/search_doctor.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../chat_gpt/chat_screen.dart';
 import '../doctor/register_doctor_details.dart';
 import '../login_view/login_view.dart';
+import 'ai_diet_view.dart';
+import 'baby_records_view.dart';
 
 class ChildDashBoard extends StatefulWidget {
   const ChildDashBoard({Key? key}) : super(key: key);
@@ -39,7 +42,8 @@ class _HomeViewState extends State<ChildDashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("DASHBOARD"),
+        title: const Text("CHILD DASHBOARD"),
+        backgroundColor: Color(0xFF7165D6),
         centerTitle: true,
       ),
       drawer: Drawer(
@@ -49,7 +53,7 @@ class _HomeViewState extends State<ChildDashBoard> {
               SizedBox(
                 height: MediaQuery.of(context).size.height / 3.5,
                 child: DrawerHeader(
-                  decoration: BoxDecoration(color: Colors.blue.shade500),
+                  decoration: BoxDecoration(color: Color(0xFF7165D6)),
                   child: Column(
                     children: [
                       const Padding(
@@ -97,16 +101,16 @@ class _HomeViewState extends State<ChildDashBoard> {
                   ListTile(
                     leading: Icon(
                       Icons.food_bank_outlined,
-                      color: Colors.blue,
+                      color:Color(0xFF7165D6),
                     ),
                     title: Text("Ai Diet Palne",
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Color(0xFF7165D6), fontWeight: FontWeight.bold)),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AiDietPlaneSuggest(),
+                          builder: (context) => AiDiet(),
                         ),
                       );
                     },
@@ -114,23 +118,23 @@ class _HomeViewState extends State<ChildDashBoard> {
                   ListTile(
                     leading: Icon(
                       Icons.note_add_outlined,
-                      color: Colors.blue,
+                      color: Color(0xFF7165D6),
                     ),
                     title: Text("Baby Records",
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Color(0xFF7165D6), fontWeight: FontWeight.bold)),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => EnterDoctorDetails(),
+                          builder: (context) => BabyRecord(),
                         ),
                       );
                     },
                   ),
                   Theme(
                     data: ThemeData(
-                      unselectedWidgetColor: Colors.blue, // Change arrow color
+                      unselectedWidgetColor:Color(0xFF7165D6), // Change arrow color
                     ),
                     child: Container(
                       color: Colors.white,
@@ -142,7 +146,7 @@ class _HomeViewState extends State<ChildDashBoard> {
                             Text(
                               "Baby Products",
                               style: TextStyle(
-                                  color: Colors.blue,
+                                  color:Color(0xFF7165D6),
                                   fontWeight: FontWeight.bold),
                             ),
                           ],
@@ -150,50 +154,50 @@ class _HomeViewState extends State<ChildDashBoard> {
                         children: [
                           ListTile(
                             leading: FaIcon(FontAwesomeIcons.bagShopping,
-                                color: Colors.blue),
+                                color:Color(0xFF7165D6)),
                             title: Text("Baby Kit Bag",
                                 style: TextStyle(
-                                    color: Colors.blue,
+                                    color: Color(0xFF7165D6),
                                     fontWeight: FontWeight.bold)),
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => EnterDoctorDetails(),
-                                ),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => EnterDoctorDetails(),
+                              //   ),
+                              // );
                             },
                           ),
                           ListTile(
                             leading:
-                                Icon(Icons.toys_outlined, color: Colors.blue),
+                                Icon(Icons.toys_outlined, color:Color(0xFF7165D6)),
                             title: Text("Baby Toys",
                                 style: TextStyle(
-                                    color: Colors.blue,
+                                    color: Color(0xFF7165D6),
                                     fontWeight: FontWeight.bold)),
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => EnterDoctorDetails(),
-                                ),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => EnterDoctorDetails(),
+                              //   ),
+                              // );
                             },
                           ),
                           ListTile(
                             leading: Icon(Icons.accessibility_outlined,
-                                color: Colors.blue),
+                                color: Color(0xFF7165D6)),
                             title: Text("Baby Cloths",
                                 style: TextStyle(
-                                    color: Colors.blue,
+                                    color: Color(0xFF7165D6),
                                     fontWeight: FontWeight.bold)),
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => EnterDoctorDetails(),
-                                ),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => EnterDoctorDetails(),
+                              //   ),
+                              // );
                             },
                           ),
                         ],
@@ -204,46 +208,46 @@ class _HomeViewState extends State<ChildDashBoard> {
                   ListTile(
                     leading: Icon(
                       Icons.question_answer_outlined,
-                      color: Colors.blue,
+                      color:Color(0xFF7165D6),
                     ),
                     title: Text("Ask any Question?",
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Color(0xFF7165D6), fontWeight: FontWeight.bold)),
                     onTap: () {
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ChatGPTScreen(),));
                     },
                   ),
                   Divider(
-                    color: Colors.blue,
+                    color: Color(0xFF7165D6),
                     thickness: 1,
                   ),
                   ListTile(
                     leading: Icon(
                       Icons.settings,
-                      color: Colors.blue,
+                      color: Color(0xFF7165D6),
                     ),
                     title: Text("Setting",
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Color(0xFF7165D6), fontWeight: FontWeight.bold)),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => EnterDoctorDetails(),
+                          builder: (context) =>SettingsScreen(),
                         ),
                       );
                     },
                   ),
                   ListTile(
-                    leading: Icon(
+                    leading: const Icon(
                       Icons.logout_rounded,
-                      color: Colors.blue,
+                      color: Color(0xFF7165D6),
                     ),
                     title: Text("Logout",
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Color(0xFF7165D6), fontWeight: FontWeight.bold)),
                     onTap: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => LoginView(),
@@ -260,6 +264,7 @@ class _HomeViewState extends State<ChildDashBoard> {
           child: Center(
             child: Column(
               children: [
+                SizedBox(height: 20,),
                 // Container(
                 //    height: MediaQuery.of(context).size.height/2.5,
                 //    child: Image(
@@ -267,11 +272,11 @@ class _HomeViewState extends State<ChildDashBoard> {
                 // ),
                 //  ),
                 Container(
-                  height: MediaQuery.of(context).size.height / 3,
+                  height: MediaQuery.of(context).size.height /2.2,
                   width: MediaQuery.of(context).size.width / 1.1,
                   decoration: BoxDecoration(
-                      color: Colors.blue.shade500,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                      color: Color(0xFF7165D6),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                   // color: Colors.deepOrangeAccent,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -284,7 +289,7 @@ class _HomeViewState extends State<ChildDashBoard> {
                         children: [
                           InkWell(
                             child: Container(
-                              height: 90,
+                              height: 150,
                               width: 150,
                               // color: Colors.white,
                               decoration: const BoxDecoration(
@@ -294,46 +299,54 @@ class _HomeViewState extends State<ChildDashBoard> {
                               child: Column(
                                 children: [
                                   SizedBox(
-                                    height: 15,
+                                    height: 30,
                                   ),
-                                  Text('Ai Diet Plane'),
+                                  Text('Creat Ai Diet Plane',style: TextStyle(fontWeight: FontWeight.w600),),
                                   SizedBox(height: 4),
                                   Container(
-                                      height: 50,
-                                      width: 70,
+                                      height: 80,
+                                      width: 80,
                                       child: Image(
                                         image: AssetImage(
-                                            'assets/first_background.png'),
+                                            'assets/healthplanelogo.jpeg'),
                                       ))
                                 ],
                               ),
                             ),
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const AiDiet(),));
+                            },
                           ),
                           // SizedBox(width: 29,),
-                          Container(
-                            height: 90,
-                            width: 150,
-                            // color: Colors.white,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Text('Baby Records'),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Container(
-                                    height: 50,
-                                    width: 70,
-                                    child: Image(
-                                      image: AssetImage('assets/report.jpeg'),
-                                    ))
-                              ],
+                          InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const BabyRecord(),));
+                            },
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              // color: Colors.white,
+                              decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Text('Baby Records',style: TextStyle(fontWeight: FontWeight.w600),),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Container(
+                                      height: 80,
+                                      width: 80,
+                                      child: Image(
+                                        image: AssetImage('assets/report.jpeg'),
+                                      ))
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -345,7 +358,7 @@ class _HomeViewState extends State<ChildDashBoard> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            height: 90,
+                            height: 150,
                             width: 150,
                             // color: Colors.white,
                             decoration: const BoxDecoration(
@@ -355,51 +368,56 @@ class _HomeViewState extends State<ChildDashBoard> {
                             child: Column(
                               children: [
                                 SizedBox(
-                                  height: 15,
+                                  height: 30,
                                 ),
-                                Text('Baby Care Products'),
+                                Text('Baby Care Products',style: TextStyle(fontWeight: FontWeight.w600),),
                                 SizedBox(height: 4),
                                 Container(
-                                    height: 50,
-                                    width: 70,
+                                    height: 80,
+                                    width: 80,
                                     child: Image(
                                       image: AssetImage(
-                                          'assets/first_background.png'),
+                                          'assets/babycare.png'),
                                     ))
                               ],
                             ),
                           ),
                           // SizedBox(width: 29,),
-                          Container(
-                            height: 90,
-                            width: 150,
-                            // color: Colors.white,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Text('Ask Question Chat GPT'),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Container(
-                                    height: 50,
-                                    width: 70,
-                                    child: Image(
-                                      image: AssetImage('assets/report.jpeg'),
-                                    ))
-                              ],
+                          InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatGPTScreen(),));
+                            },
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              // color: Colors.white,
+                              decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Text('Ask Question Chat GPT',style: TextStyle(fontWeight: FontWeight.w600),),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Container(
+                                      height: 80,
+                                      width: 80,
+                                      child: Image(
+                                        image: AssetImage('assets/chatlogo.png'),
+                                      ))
+                                ],
+                              ),
                             ),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 15
                       ),
                     ],
                   ),
@@ -445,11 +463,11 @@ class _HomeViewState extends State<ChildDashBoard> {
                         ));
                   },
                   child: Container(
-                    margin: EdgeInsets.all(20),
+                    margin: EdgeInsets.only(top: 30),
                     height: 50,
-                    width: MediaQuery.of(context).size.width / 1.2,
+                    width: MediaQuery.of(context).size.width / 1.1,
                     decoration: BoxDecoration(
-                      color: Colors.blue.shade500,
+                      color: Color(0xFF7165D6),
                       borderRadius: BorderRadius.all(
                         Radius.circular(40),
                       ),
@@ -464,7 +482,8 @@ class _HomeViewState extends State<ChildDashBoard> {
                             fontSize: 20,
                             color: Colors.white),
                       ),
-                    )),
+                    ),
+                    ),
                   ),
                 ),
               ],

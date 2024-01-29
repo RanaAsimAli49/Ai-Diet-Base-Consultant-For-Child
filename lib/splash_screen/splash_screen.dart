@@ -26,29 +26,16 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TweenAnimationBuilder(
-              onEnd: (){print('Complete');},
-              curve: Curves.bounceInOut,
-              tween: Tween(begin:0.5 ,end: 1.0),
-              duration:const Duration(seconds: 2) ,
-              builder: (BuildContext context,valuj,Mywidget)=>
-                  Opacity(
-                      opacity: valuj,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/mother_child.jpg"),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/mother_child.jpg"),
+              fit: BoxFit.cover,
             ),
-
+          ),
+        ),
       ),
-            )])));
+    );
   }
 
   void initFun() async{
@@ -69,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginView(),))
         }
     });
+    
 
   }
 }

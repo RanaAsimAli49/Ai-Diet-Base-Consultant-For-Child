@@ -1,4 +1,8 @@
 import 'package:ai_health_care/doctor_chat/chats_view.dart';
+import 'package:ai_health_care/screens/chats_screen.dart';
+import 'package:ai_health_care/screens/message_screen.dart';
+import 'package:ai_health_care/screens/schedule_screen.dart';
+import 'package:ai_health_care/screens/settings_screen.dart';
 import 'package:ai_health_care/views/all_doctor_dashboard_activity/assign_patient.dart';
 import 'package:ai_health_care/views/doctor/register_doctor_details.dart';
 import 'package:ai_health_care/views/all_doctor_dashboard_activity/pending_patient.dart';
@@ -6,6 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../chat_gpt/chat_screen.dart';
+import '../child/ai_diet_view.dart';
+import '../child/baby_records_view.dart';
+import '../child/search_doctor.dart';
 import '../login_view/login_view.dart';
 
 class DoctorDashboard extends StatefulWidget {
@@ -42,7 +50,8 @@ class _DoctorDashboardState extends State<DoctorDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("DASHBOARD"),
+        title: const Text("DOCTOR DASHBOARD"),
+        backgroundColor: Color(0xFF7165D6),
         centerTitle: true,
       ),
       drawer: Drawer(
@@ -52,7 +61,7 @@ class _DoctorDashboardState extends State<DoctorDashboard> {
               SizedBox(
                 height: MediaQuery.of(context).size.height/3.4,
                 child: DrawerHeader(
-                  decoration: BoxDecoration(color: Colors.blue.shade500),
+                  decoration: BoxDecoration(color:Color(0xFF7165D6)),
                   child: Column(
                     children: [
                       const Padding(
@@ -84,45 +93,45 @@ class _DoctorDashboardState extends State<DoctorDashboard> {
               Column(
                 children: [
                   ListTile(
-                    leading: Icon(Icons.health_and_safety_outlined,color: Colors.blue,),
-                    title: Text("Assign Patient",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold)),
+                    leading: Icon(Icons.schedule,color: Color(0xFF7165D6),),
+                    title: Text("Doctor Schedule",style: TextStyle(color: Color(0xFF7165D6),fontWeight: FontWeight.bold)),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => AssignPatient(),),);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ScheduleScreen(),),);
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.pending_actions_rounded,color: Colors.blue,),
-                    title: Text("Pending Patient",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold)),
+                    leading: Icon(Icons.pending_actions_rounded,color: Color(0xFF7165D6),),
+                    title: Text("Pending Patient",style: TextStyle(color: Color(0xFF7165D6),fontWeight: FontWeight.bold)),
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) =>PendingPatient()),);
                     },
                   ),
                   ListTile(
-                    leading: FaIcon(FontAwesomeIcons.rocketchat,color: Colors.blue),
-                    title: Text("Chat",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold)),
+                    leading: FaIcon(FontAwesomeIcons.rocketchat,color:Color(0xFF7165D6)),
+                    title: Text("Chat",style: TextStyle(color: Color(0xFF7165D6),fontWeight: FontWeight.bold)),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ChatsView(),),);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>ChatsScreen(),),);
                     },
                   ),
                   Divider(
-                    color: Colors.blue,
+                    color: Color(0xFF7165D6),
                     thickness: 1,
                   ),
                   ListTile(
-                    leading:Icon(Icons.settings,color: Colors.blue,),
-                    title: Text("Setting",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold)),
+                    leading:Icon(Icons.settings,color: Color(0xFF7165D6),),
+                    title: Text("Setting",style: TextStyle(color: Color(0xFF7165D6),fontWeight: FontWeight.bold)),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => EnterDoctorDetails(),),);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsScreen(),),);
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.logout_rounded,color: Colors.blue,),
-                    title: Text("Logout",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold)),
+                    leading: Icon(Icons.logout_rounded,color:Color(0xFF7165D6),),
+                    title: Text("Logout",style: TextStyle(color: Color(0xFF7165D6),fontWeight: FontWeight.bold)),
                     onTap: () async{
                       // Obtain shared preferences.
                       final SharedPreferences prefs = await SharedPreferences.getInstance();
                       prefs!.setString("isLogin","No");
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginView(),),);
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginView(),),);
                     },
                   )
                 ],
@@ -130,88 +139,260 @@ class _DoctorDashboardState extends State<DoctorDashboard> {
             ],
           )
       ),
+      // body: SafeArea(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Center(
+      //         child: Container(
+      //           height: MediaQuery.of(context).size.height/2.3,
+      //           width: MediaQuery.of(context).size.width/1.1,
+      //           decoration: BoxDecoration(
+      //               color: Color(0xFF7165D6),
+      //               borderRadius: BorderRadius.all(Radius.circular(20))
+      //           ),
+      //           // color: Colors.deepOrangeAccent,
+      //           child: Column(
+      //             mainAxisAlignment: MainAxisAlignment.center,
+      //             children: [
+      //               SizedBox(height: 15,),
+      //               Row(
+      //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //                 children: [
+      //                   Container(
+      //                     height: 120,
+      //                     width: 150,
+      //                     // color: Colors.white,
+      //                     decoration: const BoxDecoration(
+      //                         color: Colors.white,
+      //                         borderRadius: BorderRadius.all(Radius.circular(20))
+      //                     ),
+      //                     child: Column(
+      //                       mainAxisAlignment: MainAxisAlignment.center,
+      //                       children: [
+      //                         Text('Assign Patient'),
+      //                       ],
+      //                     ),
+      //                   ),
+      //                   // SizedBox(width: 29,),
+      //                   Container(
+      //                     height: 120,
+      //                     width: 150,
+      //                     // color: Colors.white,
+      //                     decoration: const BoxDecoration(
+      //                         color: Colors.white,
+      //                         borderRadius: BorderRadius.all(Radius.circular(20))
+      //                     ),
+      //                     child: Column(
+      //                       mainAxisAlignment: MainAxisAlignment.center,
+      //                       children: [
+      //                         Text('Pending Patient'),
+      //                       ],
+      //                     ),
+      //                   ),
+      //                 ],
+      //               ),
+      //               SizedBox(height: 20,),
+      //               Row(
+      //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //                 children: [
+      //                   // SizedBox(width: 29,),
+      //                   Container(
+      //                     height: 120,
+      //                     width: 150,
+      //                     // color: Colors.white,
+      //                     decoration: const BoxDecoration(
+      //                         color: Colors.white,
+      //                         borderRadius: BorderRadius.all(Radius.circular(20))
+      //                     ),
+      //                     child: Column(
+      //                       mainAxisAlignment: MainAxisAlignment.center,
+      //                       children: [
+      //                         Text('Chat'),
+      //                       ],
+      //                     ),
+      //                   ),
+      //                 ],
+      //               ),
+      //               SizedBox(height: 15,),
+      //             ],
+      //           ),
+      //         ),
+      //       ),
+      //
+      //     ],
+      //   ),
+      // ),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Container(
-                height: MediaQuery.of(context).size.height/2.3,
-                width: MediaQuery.of(context).size.width/1.1,
-                decoration: BoxDecoration(
-                    color: Colors.blue.shade500,
-                    borderRadius: BorderRadius.all(Radius.circular(20))
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: 20,),
+                // Container(
+                //    height: MediaQuery.of(context).size.height/2.5,
+                //    child: Image(
+                //      image: AssetImage('assets/baby_first.jpeg'),
+                // ),
+                //  ),
+                Container(
+                  height: MediaQuery.of(context).size.height / 2.4,
+                  width: MediaQuery.of(context).size.width / 1.1,
+                  decoration: BoxDecoration(
+                      color: Color(0xFF7165D6),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  // color: Colors.deepOrangeAccent,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          InkWell(
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              // color: Colors.white,
+                              decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height:15,
+                                  ),
+                                  Text('Doctor Schedule',style: TextStyle(fontWeight: FontWeight.w600),),
+                                  SizedBox(height: 15),
+                                  Container(
+                                      height: 80,
+                                      width: 80,
+                                      child: Image(
+                                        image: AssetImage(
+                                            'assets/schedulelogo.png'),
+                                      ))
+                                ],
+                              ),
+                            ),
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const ScheduleScreen(),));
+                            },
+                          ),
+                          // SizedBox(width: 29,),
+                          InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const PendingPatient(),));
+                            },
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              // color: Colors.white,
+                              decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text('Pending Patient',style: TextStyle(fontWeight: FontWeight.w600),),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Container(
+                                      height: 80,
+                                      width: 80,
+                                      child: Image(
+                                        image: AssetImage('assets/pending1.jpg'),
+                                      ))
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          // SizedBox(width: 29,),
+                          InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatGPTScreen(),));
+                            },
+                            child: Container(
+                              height: 112,
+                              width: 300,
+                              // color: Colors.white,
+                              decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text('Ask Question Chat GPT',style: TextStyle(fontWeight: FontWeight.w600),),
+                                  Container(
+                                      height: 80,
+                                      width: 80,
+                                      child: Image(
+                                        image: AssetImage('assets/chatlogo.png'),
+                                      ))
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 13,
+                      ),
+                    ],
+                  ),
                 ),
-                // color: Colors.deepOrangeAccent,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 15,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          height: 120,
-                          width: 150,
-                          // color: Colors.white,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(20))
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Assign Patient'),
-                            ],
-                          ),
-                        ),
-                        // SizedBox(width: 29,),
-                        Container(
-                          height: 120,
-                          width: 150,
-                          // color: Colors.white,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(20))
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Pending Patient'),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        // SizedBox(width: 29,),
-                        Container(
-                          height: 120,
-                          width: 150,
-                          // color: Colors.white,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(20))
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Chat'),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15,),
-                  ],
-                ),
-              ),
+                // InkWell(
+                //   onTap: () {
+                //     Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //           builder: (context) => EnterBabyDetails(),
+                //         ));
+                //   },
+                //   child: Container(
+                //     margin:
+                //         EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 20),
+                //     height: 50,
+                //     width: MediaQuery.of(context).size.width / 1.2,
+                //     decoration: BoxDecoration(
+                //       color: Colors.blue.shade500,
+                //       borderRadius: BorderRadius.all(
+                //         Radius.circular(40),
+                //       ),
+                //     ),
+                //     child: const Center(
+                //         child: Padding(
+                //       padding: EdgeInsets.all(8.0),
+                //       child: Text(
+                //         "CREAT DIET PLAN",
+                //         style: TextStyle(
+                //             fontWeight: FontWeight.bold,
+                //             fontSize: 20,
+                //             color: Colors.white),
+                //       ),
+                //     )),
+                //   ),
+                // ),
+              ],
             ),
-
-          ],
+          ),
         ),
       ),
     );
